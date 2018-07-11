@@ -1,0 +1,47 @@
+#card-list {
+    height: 80vh;
+    overflow: scroll;
+    border-right: 1px solid #ccc;
+}
+
+#monster-list {
+    height: 35vh;
+    overflow: scroll;
+    border: 1px solid #ccc;
+}
+
+#spell-list {
+    height: 35vh;
+    overflow: scroll;
+    border: 1px solid #ccc;
+}
+
+#trap-list {
+    height: 35vh;
+    overflow: scroll;
+    border: 1px solid #ccc;
+}
+
+#extra-list {
+    height: 35vh;
+    overflow: scroll;
+    border: 1px solid #ccc;
+}
+
+.popover{
+    max-height: 300px;
+    overflow: scroll;
+}
+
+.navbar-toggle {
+    padding:.25rem .75rem;
+    font-size:1.25rem;
+    line-height:1;
+    background-color:transparent;
+    border:1px solid transparent;
+    border-radius:.25rem
+}
+
+.navbar-toggle:hover {
+    background-color: #cccccc;
+}

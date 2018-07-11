@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Your Deck</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap-grid.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap-reboot.min.css" rel="stylesheet" media="screen">
+    <link href="css/main.css" rel="stylesheet" media="screen">
+</head>
+<body>
+
+<div class="pos-f-t">
+    <div class="collapse" id="site-description">
+        <div class="bg-light p-4">
+            <h4 class="text-muted">Yu-Gi-Oh Deck & Hand Testing Webpage</h4>
+            <span class="text-muted">Created by Mackenzie Dang</span>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggle" data-toggle="collapse" type="button" data-target="#site-description" aria-controls="site-description" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        File
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item"><input type="file" id="files"></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" id="load-button" href="#">Load</a>
+                        <a class="dropdown-item" id="save-button" href="#">Save</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#test-hand-modal" href="#">Test Hands</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                       id="card-search">
+            </form>
+        </div>
+    </nav>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="test-hand-modal" tabindex="-1" role="dialog" aria-labelledby="test-hand-modal-label"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="test-hand-modal-label">Generate Test Hands</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Hand:</h5>
+                <div class="list-group align-items-left" id="hand-list"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="generate-hand">Generate</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="alert alert-danger fade show" role="alert" style="display: none" id="error-container">
+        <h4 class="alert-heading">OOPSIE WOOPSIE!!</h4>
+        <p>Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD
+            to fix this!</p>
+        <button type="button" class="close" onclick="$('.alert').hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <br>
+    <h3>Card List:</h3>
+    <div class="row">
+        <div class="list-group align-items-center col card-list" id="card-list"></div>
+        <div class="col">
+            <h4>Monsters: <span class="badge badge-pill badge-info" id="monster-count">0</span></h4>
+            <div class="list-group deck-lists align-items-center" id="monster-list"></div>
+            <h4>Spells: <span class="badge badge-pill badge-info" id="spell-count">0</span></h4>
+            <div class="list-group deck-lists align-items-center" id="spell-list"></div>
+        </div>
+        <div class="col">
+            <h4>Traps: <span class="badge badge-pill badge-info" id="trap-count">0</span></h4>
+            <div class="list-group deck-lists align-items-center" id="trap-list"></div>
+            <h4>Extra: <span class="badge badge-pill badge-info" id="extra-count">0</span></h4>
+            <div class="list-group deck-lists align-items-center" id="extra-list"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/underscore-min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.js"><\/script>')</script>
+<script src="js/ygopricesapi.js"></script>
+<script src="js/main.js"></script>
+
+
+</body>
+</html>

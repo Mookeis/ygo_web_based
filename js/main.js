@@ -9,6 +9,42 @@ $(function () {
         return array.filter((v) => (v === value)).length;
     }
 
+    const remove = (() => {
+        const isArray = canBeArray => ('isArray' in Array)
+            ? Array.isArray(canBeArray)
+            : Object.prototype.toString.call(canBeArray) === '[object Array]';
+
+        let mapIncludes = (map, key) => map.has(key);
+        let objectIncludes = (obj, key) => key in obj;
+        let includes;
+
+        function remove(arr, ...thisArgs) {
+            let withoutValues = isArray(thisArgs[0]) ? thisArgs[0] : thisArgs;
+
+            if (typeof Map !== 'undefined') {
+                withoutValues = withoutValues.reduce((map, value) => map.set(value, value), new Map());
+                includes = mapIncludes;
+            } else {
+                withoutValues = withoutValues.reduce((map, value) => { map[value] = value; return map; } , {});
+                includes = objectIncludes;
+            }
+
+            const arrCopy = [];
+            const length = arr.length;
+
+            for (let i = 0; i < length; i++) {
+                // If value is not in exclude list
+                if (!includes(withoutValues, arr[i])) {
+                    arrCopy.push(arr[i]);
+                }
+            }
+
+            return arrCopy;
+        }
+
+        return remove;
+    })();
+
     // generate hand from arr
     $('#generate-hand').on('click', function(){
         $('#hand-list').empty();
@@ -61,7 +97,7 @@ $(function () {
             for(let i = 0; i < results.length; ++i){
                 let entry = document.createElement('a');
                 entry.appendChild(document.createTextNode(results[i].replace(/&amp;/g, '&')));
-                entry.setAttribute("class", "list-group-item list-group-item-action bg-dark text-light");
+                entry.setAttribute("class", "lists-list-item list-group-item list-group-item-action bg-dark text-light");
                 entry.setAttribute("title", "Card Description");
                 entry.setAttribute("tabindex", "0");
                 entry.setAttribute("data-toggle", "popover");
@@ -139,6 +175,42 @@ $(function () {
                         container: 'body',
                         placement: 'left',
                         offset: -600
+                    });
+
+                    $(".deck-lists .list-group-item").on("contextmenu", function(e){
+                        if($(this).attr('data-content').indexOf("Card Type: spell") > -1){
+                            document.getElementById('spell-count').innerHTML =
+                                `${parseInt(document.getElementById('spell-count').innerHTML) - 1}`;
+                            remove(deck_arr, $(this)[0].innerHTML);
+                        }else if($(this).attr('data-content').indexOf("Card Type: monster") > -1){
+                            if($(this).attr('data-content').indexOf("/ Xyz") > -1 ||
+                                $(this).attr('data-content').indexOf("/ Synchro") > -1 ||
+                                $(this).attr('data-content').indexOf("/ Fusion") > -1 ||
+                                $(this).attr('data-content').indexOf("/ Link") > -1){
+                                document.getElementById('extra-count').innerHTML =
+                                    `${parseInt(document.getElementById('extra-count').innerHTML) - 1}`;
+                                remove(extra_deck_arr, $(this)[0].innerHTML);
+                                isExtra = true;
+                            }else{
+                                document.getElementById('monster-count').innerHTML =
+                                    `${parseInt(document.getElementById('monster-count').innerHTML) - 1}`;
+                                remove(deck_arr, $(this)[0].innerHTML);
+                            }
+                        } else if($(this).attr('data-content').indexOf("Card Type: trap") > -1){
+                            document.getElementById('trap-count').innerHTML =
+                                `${parseInt(document.getElementById('trap-count').innerHTML) - 1}`;
+                            console.log(parseInt(document.getElementById('trap-count').innerHTML));
+                            remove(deck_arr, $(this)[0].innerHTML);
+                        }
+                        if(isExtra){
+                            --extra_count;
+                        }else{
+                            --main_count;
+                        }
+                        $(this)[0].remove();
+                        entry_copy.remove();
+
+                        return false;
                     });
                 });
             }
@@ -256,7 +328,7 @@ $(function () {
             }
             let entry = document.createElement('a');
             entry.appendChild(document.createTextNode($(this)[0].textContent));
-            entry.setAttribute("class", "list-group-item list-group-item-action bg-dark text-light");
+            entry.setAttribute("class", "lists-list-item list-group-item list-group-item-action bg-dark text-light");
             entry.setAttribute("id", "lists");
             entry.setAttribute("title", "Card Description");
             entry.setAttribute("tabindex", "0");
@@ -285,6 +357,42 @@ $(function () {
 
             entry_list.appendChild(entry);
             entry_copy_list.appendChild(entry_copy);
+
+            $(".deck-lists .list-group-item").on("contextmenu", function(e){
+                if($(this).attr('data-content').indexOf("Card Type: spell") > -1){
+                    document.getElementById('spell-count').innerHTML =
+                        `${parseInt(document.getElementById('spell-count').innerHTML) - 1}`;
+                    remove(deck_arr, $(this)[0].innerHTML);
+                }else if($(this).attr('data-content').indexOf("Card Type: monster") > -1){
+                    if($(this).attr('data-content').indexOf("/ Xyz") > -1 ||
+                        $(this).attr('data-content').indexOf("/ Synchro") > -1 ||
+                        $(this).attr('data-content').indexOf("/ Fusion") > -1 ||
+                        $(this).attr('data-content').indexOf("/ Link") > -1){
+                        entry_copy_list = document.getElementById('extra-deck-zone-list');
+                        document.getElementById('extra-count').innerHTML =
+                            `${parseInt(document.getElementById('extra-count').innerHTML) - 1}`;
+                        remove(extra_deck_arr, $(this)[0].innerHTML);
+                        isExtra = true;
+                    }else{
+                        document.getElementById('monster-count').innerHTML =
+                            `${parseInt(document.getElementById('monster-count').innerHTML) - 1}`;
+                        remove(deck_arr, $(this)[0].innerHTML);
+                    }
+                } else if($(this).attr('data-content').indexOf("Card Type: trap") > -1){
+                    document.getElementById('trap-count').innerHTML =
+                        `${parseInt(document.getElementById('trap-count').innerHTML) - 1}`;
+                    remove(deck_arr, $(this)[0].innerHTML);
+                }
+                if(isExtra){
+                    --extra_count;
+                }else{
+                    --main_count;
+                }
+                $(this)[0].remove();
+                entry_copy.remove();
+
+                return false;
+            });
             return false;
         });
 
@@ -293,7 +401,6 @@ $(function () {
             $(".list-group-item").removeClass("active");
             $(this).addClass("active");
         });
-
 
         //search filtering
         $("#card-search").on("keyup", function () {

@@ -187,8 +187,11 @@
         </div>
         <div class="row text-secondary" id="hand-deck-row">
             <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="hand-zone" data-appendto="true">
-                <h6>Hand</h6>
-                <div class="list-group align-items-center"></div>
+                <h6>
+                    Hand
+                    <span class="badge badge-primary generate-hand">Generate</span>
+                </h6>
+                <div class="list-group align-items-center" id="hand-zone-list" data-appendto="true"></div>
             </div>
             <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="deck-zone" >
                 <h6>Deck</h6>

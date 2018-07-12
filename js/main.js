@@ -45,6 +45,20 @@ $(function () {
         }
     });
 
+    //generate hand from deck list
+    $('.generate-hand').on('click', function(){
+        if(deck_arr.length > 0) {
+            let hand = _.shuffle(deck_arr).slice(0, 5);
+            let len = hand.length;
+
+            for (let i = 0; i < len; ++i) {
+                let card_list = document.getElementById('hand-zone-list');
+                let entry = document.getElementsByClassName(hand[i].replace(/&amp;/g, '&').toLowerCase().replace(/\s/g, ''))[0];
+                card_list.appendChild(entry);
+            }
+        }
+    });
+
     // save button handler
     $('#save-button').on('click', function(){
         let data = deck_arr.join("**") + "**" + extra_deck_arr.join("**");
@@ -243,7 +257,7 @@ $(function () {
         });
 
         //remove elements from deck
-        $('body').on('click', 'a.lists-list-item', function(){
+        $('body').on('dblclick', 'a.lists-list-item', function(){
             let isExtra = false;
             if($(this).attr('data-content').indexOf("Card Type: spell") > -1){
                 document.getElementById('spell-count').innerHTML =

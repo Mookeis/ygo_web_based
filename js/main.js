@@ -9,6 +9,14 @@ $(function () {
         return array.filter((v) => (v === value)).length;
     }
 
+    $('.scroll-down').on("click", function(){
+        /*window.scrollTo({
+            top: 1000,
+            behavior: "smooth"
+        });*/
+        $('html,body').animate({scrollTop:1000}, 1000);
+    });
+
     const remove = (() => {
         const isArray = canBeArray => ('isArray' in Array)
             ? Array.isArray(canBeArray)

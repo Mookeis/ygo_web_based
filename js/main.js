@@ -71,7 +71,6 @@ $(function () {
                 let entry_copy = document.createElement('a');
                 entry_copy.appendChild(document.createTextNode(results[i].replace(/&amp;/g, '&')));
                 entry_copy.setAttribute("class", "list-group-item list-group-item-action bg-dark text-light");
-                entry_copy.setAttribute("id", "deck-item");
                 entry_copy.setAttribute("title", "Card Description");
                 entry_copy.setAttribute("tabindex", "0");
                 entry_copy.setAttribute("data-toggle", "popover");
@@ -80,6 +79,7 @@ $(function () {
                 entry_copy.setAttribute("draggable", "true");
                 entry_copy.setAttribute("ondragstart", "drag(event)");
 
+                let isExtra = false;
                 get_card_desc(results[i].replace(/&amp;/g, '&'), function (request) {
                     let card_text = request.data.text;
                     let card_type = request.data.card_type;
@@ -96,6 +96,7 @@ $(function () {
                         Attack: ${card_atk} Defense: ${card_def}<br> Level: ${card_level}`);
 
                     let entry_list;
+                    let entry_copy_list = document.getElementById('deck-zone-list');
                     if(entry.getAttribute('data-content').indexOf("Card Type: spell") > -1){
                         entry_list = document.getElementById('spell-list');
                         document.getElementById('spell-count').innerHTML =
@@ -104,11 +105,14 @@ $(function () {
                     }else if(entry.getAttribute('data-content').indexOf("Card Type: monster") > -1){
                         if(entry.getAttribute('data-content').indexOf("/ Xyz") > -1 ||
                             entry.getAttribute('data-content').indexOf("/ Synchro") > -1 ||
-                            entry.getAttribute('data-content').indexOf("/ Fusion") > -1){
+                            entry.getAttribute('data-content').indexOf("/ Fusion") > -1 ||
+                            entry.getAttribute('data-content').indexOf("/ Link") > -1){
                             entry_list = document.getElementById('extra-list');
+                            entry_copy_list = document.getElementById('extra-deck-zone-list');
                             document.getElementById('extra-count').innerHTML =
                                 `${parseInt(document.getElementById('extra-count').innerHTML) + 1}`;
                             extra_deck_arr.push(entry.innerHTML);
+                            isExtra = true;
                         }else{
                             entry_list = document.getElementById('monster-list');
                             document.getElementById('monster-count').innerHTML =
@@ -122,7 +126,13 @@ $(function () {
                         deck_arr.push(entry.innerHTML);
                     }
                     entry_list.appendChild(entry);
-                    document.getElementById('deck-zone-list').appendChild(entry_copy);
+
+                    if(isExtra){
+                        entry_copy.setAttribute("id", `extra-deck-item${extra_count++}`);
+                    }else{
+                        entry_copy.setAttribute("id", `deck-item${main_count++}`);
+                    }
+                    entry_copy_list.appendChild(entry_copy);
 
                     // description popover
                     $('[data-toggle="popover"]').popover({
@@ -214,6 +224,8 @@ $(function () {
                 return false;
             }
             let entry_list;
+            let entry_copy_list = document.getElementById('deck-zone-list');
+            let isExtra = false;
             if($(this).attr('data-content').indexOf("Card Type: spell") > -1){
                 entry_list = document.getElementById('spell-list');
                 document.getElementById('spell-count').innerHTML =
@@ -222,11 +234,14 @@ $(function () {
             }else if($(this).attr('data-content').indexOf("Card Type: monster") > -1){
                 if($(this).attr('data-content').indexOf("/ Xyz") > -1 ||
                     $(this).attr('data-content').indexOf("/ Synchro") > -1 ||
-                    $(this).attr('data-content').indexOf("/ Fusion") > -1){
+                    $(this).attr('data-content').indexOf("/ Fusion") > -1 ||
+                    $(this).attr('data-content').indexOf("/ Link") > -1){
                     entry_list = document.getElementById('extra-list');
+                    entry_copy_list = document.getElementById('extra-deck-zone-list');
                     document.getElementById('extra-count').innerHTML =
                         `${parseInt(document.getElementById('extra-count').innerHTML) + 1}`;
                     extra_deck_arr.push($(this)[0].innerHTML);
+                    isExtra = true;
                 }else{
                     entry_list = document.getElementById('monster-list');
                     document.getElementById('monster-count').innerHTML =
@@ -254,7 +269,11 @@ $(function () {
             let entry_copy = document.createElement('a');
             entry_copy.appendChild(document.createTextNode($(this)[0].textContent));
             entry_copy.setAttribute("class", "list-group-item list-group-item-action bg-dark text-light");
-            entry_copy.setAttribute("id", "deck-item");
+            if(isExtra){
+                entry_copy.setAttribute("id", `extra-deck-item${extra_count++}`);
+            }else{
+                entry_copy.setAttribute("id", `deck-item${main_count++}`);
+            }
             entry_copy.setAttribute("title", "Card Description");
             entry_copy.setAttribute("tabindex", "0");
             entry_copy.setAttribute("data-toggle", "popover");
@@ -264,7 +283,8 @@ $(function () {
             entry_copy.setAttribute("draggable", "true");
             entry_copy.setAttribute("ondragstart", "drag(event)");
 
-            document.getElementById('deck-zone-list').appendChild(entry);
+            entry_list.appendChild(entry);
+            entry_copy_list.appendChild(entry_copy);
             return false;
         });
 
@@ -296,10 +316,3 @@ $(function () {
         });
     });
 });
-
-/*
-TODO:
-Complete play test implementation
-Add remove card function
-Adjust views
- */

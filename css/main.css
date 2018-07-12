@@ -53,9 +53,9 @@ html, body {
     height: 40vh;
 }
 
-#deck-zone-list {
+#deck-zone-list, #extra-deck-zone-list {
     margin: 0;
-    height: 40vh;
+    height: 35vh;
     width: 100%;
     overflow: scroll;
 }
@@ -93,12 +93,22 @@ html, body {
 }
 
 .parallax-window {
-    height: 100%;
+    background-image: url("../img/dust_scratches.png");
+    background-position: 50% 0;
+
+    -moz-transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 
 .zone {
     height: 20vh;
-    border: 1px solid #fff;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.zone-item {
+    height: 20vh;
 }
 
 .jumbotron {

@@ -63,7 +63,7 @@
     </nav>
 </div>
 
-<div class="parallax-window" data-parallax="scroll" data-image-src="img/flat_dark.jpg">
+<div class="parallax-window">
     <!-- Create Deck Container -->
     <div class="container-fluid">
         <div class="alert alert-danger fade show" role="alert" style="display: none" id="error-container">
@@ -76,160 +76,128 @@
             </button>
         </div>
         <br>
-        <h3 class="text-light">Card List:</h3>
+        <h3 class="text-secondary">Card List:</h3>
         <div class="row">
             <div class="list-group align-items-center col card-list" id="card-list"></div>
             <div class="col">
-                <h4 class="text-light">Monsters: <span class="badge badge-pill badge-info" id="monster-count">0</span>
+                <h4 class="text-secondary">Monsters: <span class="badge badge-pill badge-info" id="monster-count">0</span>
                 </h4>
                 <div class="list-group deck-lists align-items-center" id="monster-list"></div>
-                <h4 class="text-light">Spells: <span class="badge badge-pill badge-info" id="spell-count">0</span></h4>
+                <h4 class="text-secondary">Spells: <span class="badge badge-pill badge-info" id="spell-count">0</span></h4>
                 <div class="list-group deck-lists align-items-center" id="spell-list"></div>
             </div>
             <div class="col">
-                <h4 class="text-light">Traps: <span class="badge badge-pill badge-info" id="trap-count">0</span></h4>
+                <h4 class="text-secondary">Traps: <span class="badge badge-pill badge-info" id="trap-count">0</span></h4>
                 <div class="list-group deck-lists align-items-center" id="trap-list"></div>
-                <h4 class="text-light">Extra: <span class="badge badge-pill badge-info" id="extra-count">0</span></h4>
+                <h4 class="text-secondary">Extra: <span class="badge badge-pill badge-info" id="extra-count">0</span></h4>
                 <div class="list-group deck-lists align-items-center" id="extra-list"></div>
             </div>
         </div>
     </div>
+    <br><br>
 </div>
-
-<div class="parallax-window" data-parallax="scroll" data-image-src="img/flat_dark.jpg">
-    <!-- Create Deck Container -->
+<div class="parallax-window">
+    <!-- Duel Container -->
     <div class="container-fluid">
-        <div class="row text-light" id="extra-monster-row">
-            <div class="col zone">
-                <div class="list-group align-items-center">
-                    <a class="list-group-item list-group-item-action bg-dark text-light">
-                        Field Spell Zone
-                    </a>
+        <div class="row text-secondary" id="extra-monster-row">
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="field-zone">
+                <h6>Field Spell Zone</h6>
+                <div class="list-group align-items-center zone-item" data-appendto="true">
                 </div>
             </div>
-            <div class="col zone">
-                <div class="list-group align-items-center">
-                    <a class="list-group-item list-group-item-action bg-dark text-light">
-                        Extra Monster Zone 1
-                    </a>
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="em-zone1">
+                <h6>Extra Monster Zone</h6>
+                <div class="list-group align-items-center zone-item" data-appendto="true">
                 </div>
             </div>
-            <div class="col zone"></div>
-            <div class="col zone">
-                <div class="list-group align-items-center">
-                    <a class="list-group-item list-group-item-action bg-dark text-light">
-                        Extra Monster Zone 2
-                    </a>
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="banish-zone">
+                <h6>Banished</h6>
+                <div class="list-group align-items-center zone-item" data-appendto="true">
                 </div>
             </div>
-            <div class="col zone">
-                <div class="list-group align-items-center">
-                    <a class="list-group-item list-group-item-action bg-dark text-light">
-                        Graveyard
-                    </a>
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="em-zone2">
+                <h6>Extra Monster Zone</h6>
+                <div class="list-group align-items-center zone-item" data-appendto="true">
+                </div>
+            </div>
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="grave-zone">
+                <h6>Graveyard</h6>
+                <div class="list-group align-items-center zone-item" data-appendto="true">
                 </div>
             </div>
         </div>
-        <div class="row text-light" id="monster-row">
-            <div class="col zone">
-                <div class="list-group align-items-center">
-                    <a class="list-group-item list-group-item-action bg-dark text-light">
-                        Monster Zone 1
-                    </a>
+        <div class="row text-secondary" id="monster-row">
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="m-zone1">
+                <h6>Monster Zone</h6>
+                <div class="list-group align-items-center zone-item" data-appendto="true">
                 </div>
             </div>
-            <div class="col zone">
-                <div class="list-group align-items-center">
-                    <a class="list-group-item list-group-item-action bg-dark text-light">
-                        Monster Zone 2
-                    </a>
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="m-zone2">
+                <h6>Monster Zone</h6>
+                <div class="list-group align-items-center zone-item" data-appendto="true">
                 </div>
             </div>
-            <div class="col zone">
-                <div class="list-group align-items-center">
-                    <a class="list-group-item list-group-item-action bg-dark text-light">
-                        Monster Zone 3
-                    </a>
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="m-zone3">
+                <h6>Monster Zone</h6>
+                <div class="list-group align-items-center zone-item" data-appendto="true">
                 </div>
             </div>
-            <div class="col zone">
-                <div class="list-group align-items-center">
-                    <a class="list-group-item list-group-item-action bg-dark text-light">
-                        Monster Zone 4
-                    </a>
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="m-zone4">
+                <h6>Monster Zone</h6>
+                <div class="list-group align-items-center zone-item" data-appendto="true">
                 </div>
             </div>
-            <div class="col zone">
-                <div class="list-group align-items-center">
-                    <a class="list-group-item list-group-item-action bg-dark text-light">
-                        Monster Zone 5
-                    </a>
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="m-zone5">
+                <h6>Monster Zone</h6>
+                <div class="list-group align-items-center zone-item" data-appendto="true">
                 </div>
             </div>
         </div>
-        <div class="row text-light" id="spell-row">
-            <div class="col zone">
-                <div class="list-group align-items-center">
-                    <a class="list-group-item list-group-item-action bg-dark text-light">
-                        Spell/Trap Zone 1
-                    </a>
+        <div class="row text-secondary" id="spell-row">
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="st-zone1">
+                <h6>Spell/Trap Zone</h6>
+                <div class="list-group align-items-center zone-item" data-appendto="true">
                 </div>
             </div>
-            <div class="col zone">
-                <div class="list-group align-items-center">
-                    <a class="list-group-item list-group-item-action bg-dark text-light">
-                        Spell/Trap Zone 2
-                    </a>
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="st-zone2">
+                <h6>Spell/Trap Zone</h6>
+                <div class="list-group align-items-center zone-item" data-appendto="true">
                 </div>
             </div>
-            <div class="col zone">
-                <div class="list-group align-items-center">
-                    <a class="list-group-item list-group-item-action bg-dark text-light">
-                        Spell/Trap Zone 3
-                    </a>
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="st-zone3">
+                <h6>Spell/Trap Zone</h6>
+                <div class="list-group align-items-center zone-item" data-appendto="true">
                 </div>
             </div>
-            <div class="col zone">
-                <div class="list-group align-items-center">
-                    <a class="list-group-item list-group-item-action bg-dark text-light">
-                        Spell/Trap Zone 4
-                    </a>
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="st-zone4">
+                <h6>Spell/Trap Zone</h6>
+                <div class="list-group align-items-center zone-item" data-appendto="true">
                 </div>
             </div>
-            <div class="col zone">
-                <div class="list-group align-items-center">
-                    <a class="list-group-item list-group-item-action bg-dark text-light">
-                        Spell/Trap Zone 5
-                    </a>
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="st-zone5">
+                <h6>Spell/Trap Zone</h6>
+                <div class="list-group align-items-center zone-item" data-appendto="true">
                 </div>
             </div>
         </div>
-        <div class="row text-light" id="hand-deck-row">
+        <div class="row text-secondary" id="hand-deck-row">
             <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="hand-zone" data-appendto="true">
-                <div class="list-group align-items-center">
-                    <a class="list-group-item list-group-item-action bg-dark text-light"
-                       draggable="true" ondragstart="drag(event)" id="hand-item">
-                        Hand
-                    </a>
-                </div>
+                <h6>Hand</h6>
+                <div class="list-group align-items-center"></div>
             </div>
             <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="deck-zone" >
-                <div class="list-group align-items-center" id="deck-zone-list" data-appendto="true">
-                </div>
+                <h6>Deck</h6>
+                <div class="list-group align-items-center" id="deck-zone-list" data-appendto="true"></div>
             </div>
             <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="extra-deck-zone" data-appendto="true">
-                <div class="list-group align-items-center" id="extra-deck-zone-list">
-                    <a class="list-group-item list-group-item-action bg-dark text-light"
-                       draggable="true" ondragstart="drag(event)" id="extra-deck-item">
-                        Extra Deck
-                    </a>
-                </div>
+                <h6>Extra Deck</h6>
+                <div class="list-group align-items-center" id="extra-deck-zone-list"></div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="parallax-window" data-parallax="scroll" data-image-src="img/flat_dark.jpg"></div>
+
 
 
 <!-- Modal -->
@@ -258,7 +226,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
 <script src="js/popper.min.js"></script>
-<script src="js/parallax.min.js"></script>
+<script src="js/parallax-scroll.js"></script>
 <script src="js/underscore-min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.js"><\/script>')</script>
@@ -267,13 +235,11 @@
 
 <script>
     function allowDrop(allowdropevent) {
-        allowdropevent.target.style.color = 'blue';
         allowdropevent.preventDefault();
     }
 
     function drag(dragevent) {
         dragevent.dataTransfer.setData("text", dragevent.target.id);
-        dragevent.target.style.color = 'green';
     }
 
     function drop(dropevent) {
@@ -284,7 +250,6 @@
         }else {
             dropevent.target.parentNode.appendChild(document.getElementById(data));
         }
-        document.getElementById("drag").style.color = 'black';
     }
 </script>
 

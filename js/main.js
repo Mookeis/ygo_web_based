@@ -26,7 +26,7 @@ $(function () {
 
     // save button handler
     $('#save-button').on('click', function(){
-        let data = deck_arr.toString() + extra_deck_arr.toString();
+        let data = deck_arr.join("**") + "**" + extra_deck_arr.join("**");
         let filename = "deck.txt";
         let type = "String";
         download(data, filename, type);
@@ -57,7 +57,7 @@ $(function () {
         let file = e.target.result,
             results;
         if (file && file.length) {
-            results = file.split(",");
+            results = file.split("**");
             for(let i = 0; i < results.length; ++i){
                 let entry = document.createElement('a');
                 entry.appendChild(document.createTextNode(results[i].replace(/&amp;/g, '&')));

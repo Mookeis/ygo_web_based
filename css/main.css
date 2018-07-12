@@ -49,6 +49,11 @@ html, body {
     background: rgba(116, 116, 116, 0.7);
 }
 
+#graveyard, #banished {
+    height: 15vh;
+    overflow: scroll;
+}
+
 #deck-zone, #hand-zone, #extra-deck-zone {
     height: 40vh;
 }

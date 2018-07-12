@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Your Deck</title>
+    <title>Yugioh Play Testing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -186,17 +186,20 @@
             </div>
         </div>
         <div class="row text-secondary" id="hand-deck-row">
-            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="hand-zone" data-appendto="true">
-                <h6>Hand</h6>
-                <div class="list-group align-items-center"></div>
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="hand-zone">
+                <h6>
+                    Hand
+                    <span class="badge badge-primary generate-hand">Generate</span>
+                </h6>
+                <div class="list-group align-items-center" id="hand-zone-list" data-appendto="true"></div>
             </div>
             <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="deck-zone" >
                 <h6>Deck</h6>
                 <div class="list-group align-items-center" id="deck-zone-list" data-appendto="true"></div>
             </div>
-            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="extra-deck-zone" data-appendto="true">
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="extra-deck-zone" >
                 <h6>Extra Deck</h6>
-                <div class="list-group align-items-center" id="extra-deck-zone-list"></div>
+                <div class="list-group align-items-center" id="extra-deck-zone-list" data-appendto="true"></div>
             </div>
         </div>
     </div>
@@ -256,6 +259,7 @@
             dropevent.target.parentNode.appendChild(document.getElementById(data));
         }
     }
+
 </script>
 
 </body>

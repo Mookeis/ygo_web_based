@@ -58,7 +58,7 @@ html, body {
     height: 40vh;
 }
 
-#deck-zone-list, #extra-deck-zone-list {
+#deck-zone-list, #extra-deck-zone-list, #hand-zone-list {
     margin: 0;
     height: 35vh;
     width: 100%;
@@ -77,6 +77,14 @@ html, body {
 
 .hand-list-item {
     border: 1px solid #ccc;
+}
+
+.generate-hand {
+    cursor: pointer;
+}
+
+.generate-hand:hover {
+    background-color: #0069d9;
 }
 
 .popover{

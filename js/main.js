@@ -1,6 +1,9 @@
 $(function () {
     let deck_arr = [];
     let extra_deck_arr = [];
+    let main_count = 0;
+    let extra_count = 0;
+
     // find num occurences of value in array
     function get_occurrence(array, value) {
         return array.filter((v) => (v === value)).length;
@@ -14,13 +17,9 @@ $(function () {
         for (let i = 0; i < len; ++i) {
             let card_list = document.getElementById('hand-list');
             let entry = document.createElement('a');
-            entry.appendChild(document.createTextNode(hand[i]));
-            entry.setAttribute("class", "list-group-item list-group-item-action");
+            entry.appendChild(document.createTextNode(hand[i].replace(/&amp;/g, '&')));
+            entry.setAttribute("class", "hand-list-item list-group-item list-group-item-action bg-dark text-light");
             entry.setAttribute("title", "Card Description");
-            entry.setAttribute("tabindex", "0");
-            entry.setAttribute("data-toggle", "popover");
-            entry.setAttribute("data-trigger", "focus");
-            entry.setAttribute("data-html", "true");
             card_list.appendChild(entry);
         }
     });
@@ -61,14 +60,27 @@ $(function () {
             results = file.split(",");
             for(let i = 0; i < results.length; ++i){
                 let entry = document.createElement('a');
-                entry.appendChild(document.createTextNode(results[i]));
-                entry.setAttribute("class", "list-group-item list-group-item-action");
+                entry.appendChild(document.createTextNode(results[i].replace(/&amp;/g, '&')));
+                entry.setAttribute("class", "list-group-item list-group-item-action bg-dark text-light");
                 entry.setAttribute("title", "Card Description");
                 entry.setAttribute("tabindex", "0");
                 entry.setAttribute("data-toggle", "popover");
                 entry.setAttribute("data-trigger", "focus");
                 entry.setAttribute("data-html", "true");
-                get_card_desc(results[i], function (request) {
+
+                let entry_copy = document.createElement('a');
+                entry_copy.appendChild(document.createTextNode(results[i].replace(/&amp;/g, '&')));
+                entry_copy.setAttribute("class", "list-group-item list-group-item-action bg-dark text-light");
+                entry_copy.setAttribute("id", "deck-item");
+                entry_copy.setAttribute("title", "Card Description");
+                entry_copy.setAttribute("tabindex", "0");
+                entry_copy.setAttribute("data-toggle", "popover");
+                entry_copy.setAttribute("data-trigger", "focus");
+                entry_copy.setAttribute("data-html", "true");
+                entry_copy.setAttribute("draggable", "true");
+                entry_copy.setAttribute("ondragstart", "drag(event)");
+
+                get_card_desc(results[i].replace(/&amp;/g, '&'), function (request) {
                     let card_text = request.data.text;
                     let card_type = request.data.card_type;
                     let type = request.data.type;
@@ -76,7 +88,10 @@ $(function () {
                     let card_atk = request.data.atk;
                     let card_def = request.data.def;
                     let card_level = request.data.level;
-                    entry.setAttribute("data-content", `Name: ${results[i]}<br>Description: ${card_text}<br>
+                    entry.setAttribute("data-content", `Name: ${results[i].replace(/&amp;/g, '&')}<br>Description: ${card_text}<br>
+                        Card Type: ${card_type}<br>Type: ${type}<br>Attribute: ${card_attribute}<br>
+                        Attack: ${card_atk} Defense: ${card_def}<br> Level: ${card_level}`);
+                    entry_copy.setAttribute("data-content", `Name: ${results[i].replace(/&amp;/g, '&')}<br>Description: ${card_text}<br>
                         Card Type: ${card_type}<br>Type: ${type}<br>Attribute: ${card_attribute}<br>
                         Attack: ${card_atk} Defense: ${card_def}<br> Level: ${card_level}`);
 
@@ -107,6 +122,7 @@ $(function () {
                         deck_arr.push(entry.innerHTML);
                     }
                     entry_list.appendChild(entry);
+                    document.getElementById('deck-zone-list').appendChild(entry_copy);
 
                     // description popover
                     $('[data-toggle="popover"]').popover({
@@ -146,7 +162,7 @@ $(function () {
             let card_list = document.getElementById('card-list');
             let entry = document.createElement('a');
             entry.appendChild(document.createTextNode(card_names[i]));
-            entry.setAttribute("class", "list-group-item list-group-item-action");
+            entry.setAttribute("class", "card-list-item list-group-item list-group-item-action bg-dark text-light");
             entry.setAttribute("title", "Card Description");
             entry.setAttribute("tabindex", "0");
             //entry.setAttribute("data-toggle", "popover");
@@ -225,7 +241,7 @@ $(function () {
             }
             let entry = document.createElement('a');
             entry.appendChild(document.createTextNode($(this)[0].textContent));
-            entry.setAttribute("class", "list-group-item list-group-item-action");
+            entry.setAttribute("class", "list-group-item list-group-item-action bg-dark text-light");
             entry.setAttribute("id", "lists");
             entry.setAttribute("title", "Card Description");
             entry.setAttribute("tabindex", "0");
@@ -234,6 +250,21 @@ $(function () {
             entry.setAttribute("data-html", "true");
             entry.setAttribute("data-content", $(this).attr('data-content'));
             entry_list.appendChild(entry);
+
+            let entry_copy = document.createElement('a');
+            entry_copy.appendChild(document.createTextNode($(this)[0].textContent));
+            entry_copy.setAttribute("class", "list-group-item list-group-item-action bg-dark text-light");
+            entry_copy.setAttribute("id", "deck-item");
+            entry_copy.setAttribute("title", "Card Description");
+            entry_copy.setAttribute("tabindex", "0");
+            entry_copy.setAttribute("data-toggle", "popover");
+            entry_copy.setAttribute("data-trigger", "focus");
+            entry_copy.setAttribute("data-html", "true");
+            entry_copy.setAttribute("data-content", $(this).attr('data-content'));
+            entry_copy.setAttribute("draggable", "true");
+            entry_copy.setAttribute("ondragstart", "drag(event)");
+
+            document.getElementById('deck-zone-list').appendChild(entry);
             return false;
         });
 
@@ -265,3 +296,10 @@ $(function () {
         });
     });
 });
+
+/*
+TODO:
+Complete play test implementation
+Add remove card function
+Adjust views
+ */

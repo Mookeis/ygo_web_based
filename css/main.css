@@ -1,30 +1,76 @@
+::-webkit-scrollbar {
+    width: 0;  /* remove scrollbar space */
+    height: 0;
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+html, body {
+    height: 100%;
+}
+
 #card-list {
     height: 80vh;
     overflow: scroll;
-    border-right: 1px solid #ccc;
+    margin-left: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: rgba(116, 116, 116, 0.7);
 }
 
 #monster-list {
     height: 35vh;
     overflow: scroll;
     border: 1px solid #ccc;
+    border-radius: 5px;
+    background: rgba(116, 116, 116, 0.7);
 }
 
 #spell-list {
     height: 35vh;
     overflow: scroll;
     border: 1px solid #ccc;
+    border-radius: 5px;
+    background: rgba(116, 116, 116, 0.7);
 }
 
 #trap-list {
     height: 35vh;
     overflow: scroll;
     border: 1px solid #ccc;
+    border-radius: 5px;
+    background: rgba(116, 116, 116, 0.7);
 }
 
 #extra-list {
     height: 35vh;
     overflow: scroll;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: rgba(116, 116, 116, 0.7);
+}
+
+#deck-zone, #hand-zone, #extra-deck-zone {
+    height: 40vh;
+}
+
+#deck-zone-list {
+    margin: 0;
+    height: 40vh;
+    width: 100%;
+    overflow: scroll;
+}
+
+.list-group-item {
+    opacity: 0.5;
+    border-right: 0;
+    border-left: 0;
+}
+
+.card-list-item {
+    width: 108%;
+}
+
+.hand-list-item {
     border: 1px solid #ccc;
 }
 
@@ -44,4 +90,58 @@
 
 .navbar-toggle:hover {
     background-color: #cccccc;
+}
+
+.parallax-window {
+    height: 100%;
+}
+
+.zone {
+    height: 20vh;
+    border: 1px solid #fff;
+}
+
+.jumbotron {
+    margin-bottom: 0;
+    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 15s ease infinite;
+    -moz-animation: Gradient 15s ease infinite;
+    animation: Gradient 15s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-moz-keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
 }

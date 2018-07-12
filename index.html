@@ -12,16 +12,25 @@
 </head>
 <body>
 
+<!-- Additional Collapsible info -->
 <div class="pos-f-t">
     <div class="collapse" id="site-description">
-        <div class="bg-light p-4">
-            <h4 class="text-muted">Yu-Gi-Oh Deck & Hand Testing Webpage</h4>
-            <span class="text-muted">Created by Mackenzie Dang</span>
+        <div class="jumbotron bg-light">
+            <h1 class="display-4">Web-based Yugioh App</h1>
+            <p class="lead">This is a bootstrap based webapp for hand/play testing decks.</p>
+            <hr class="my-4">
+            <p>© Mackenzie Dang 2018</p>
+            <p class="lead">
+                <a class="btn btn-secondary btn-lg" href="https://github.com/Mookeis/ygo_web_based/tree/master"
+                   role="button">GitHub</a>
+            </p>
         </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggle" data-toggle="collapse" type="button" data-target="#site-description" aria-controls="site-description" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggle" data-toggle="collapse" type="button" data-target="#site-description"
+                aria-controls="site-description" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -35,11 +44,11 @@
                        aria-haspopup="true" aria-expanded="false">
                         File
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item"><input type="file" id="files"></a>
+                    <div class="dropdown-menu bg-dark text-secondary" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item bg-dark"><input type="file" id="files"></a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" id="load-button" href="#">Load</a>
-                        <a class="dropdown-item" id="save-button" href="#">Save</a>
+                        <a class="dropdown-item bg-dark text-secondary" id="load-button" href="#">Load</a>
+                        <a class="dropdown-item bg-dark text-secondary" id="save-button" href="#">Save</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -53,18 +62,189 @@
         </div>
     </nav>
 </div>
+
+<div class="parallax-window" data-parallax="scroll" data-image-src="img/flat_dark.jpg">
+    <!-- Create Deck Container -->
+    <div class="container-fluid">
+        <div class="alert alert-danger fade show" role="alert" style="display: none" id="error-container">
+            <h4 class="alert-heading">OOPSIE WOOPSIE!!</h4>
+            <p>Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY
+                HAWD
+                to fix this!</p>
+            <button type="button" class="close" onclick="$('.alert').hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <br>
+        <h3 class="text-light">Card List:</h3>
+        <div class="row">
+            <div class="list-group align-items-center col card-list" id="card-list"></div>
+            <div class="col">
+                <h4 class="text-light">Monsters: <span class="badge badge-pill badge-info" id="monster-count">0</span>
+                </h4>
+                <div class="list-group deck-lists align-items-center" id="monster-list"></div>
+                <h4 class="text-light">Spells: <span class="badge badge-pill badge-info" id="spell-count">0</span></h4>
+                <div class="list-group deck-lists align-items-center" id="spell-list"></div>
+            </div>
+            <div class="col">
+                <h4 class="text-light">Traps: <span class="badge badge-pill badge-info" id="trap-count">0</span></h4>
+                <div class="list-group deck-lists align-items-center" id="trap-list"></div>
+                <h4 class="text-light">Extra: <span class="badge badge-pill badge-info" id="extra-count">0</span></h4>
+                <div class="list-group deck-lists align-items-center" id="extra-list"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="parallax-window" data-parallax="scroll" data-image-src="img/flat_dark.jpg">
+    <!-- Create Deck Container -->
+    <div class="container-fluid">
+        <div class="row text-light" id="extra-monster-row">
+            <div class="col zone">
+                <div class="list-group align-items-center">
+                    <a class="list-group-item list-group-item-action bg-dark text-light">
+                        Field Spell Zone
+                    </a>
+                </div>
+            </div>
+            <div class="col zone">
+                <div class="list-group align-items-center">
+                    <a class="list-group-item list-group-item-action bg-dark text-light">
+                        Extra Monster Zone 1
+                    </a>
+                </div>
+            </div>
+            <div class="col zone"></div>
+            <div class="col zone">
+                <div class="list-group align-items-center">
+                    <a class="list-group-item list-group-item-action bg-dark text-light">
+                        Extra Monster Zone 2
+                    </a>
+                </div>
+            </div>
+            <div class="col zone">
+                <div class="list-group align-items-center">
+                    <a class="list-group-item list-group-item-action bg-dark text-light">
+                        Graveyard
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row text-light" id="monster-row">
+            <div class="col zone">
+                <div class="list-group align-items-center">
+                    <a class="list-group-item list-group-item-action bg-dark text-light">
+                        Monster Zone 1
+                    </a>
+                </div>
+            </div>
+            <div class="col zone">
+                <div class="list-group align-items-center">
+                    <a class="list-group-item list-group-item-action bg-dark text-light">
+                        Monster Zone 2
+                    </a>
+                </div>
+            </div>
+            <div class="col zone">
+                <div class="list-group align-items-center">
+                    <a class="list-group-item list-group-item-action bg-dark text-light">
+                        Monster Zone 3
+                    </a>
+                </div>
+            </div>
+            <div class="col zone">
+                <div class="list-group align-items-center">
+                    <a class="list-group-item list-group-item-action bg-dark text-light">
+                        Monster Zone 4
+                    </a>
+                </div>
+            </div>
+            <div class="col zone">
+                <div class="list-group align-items-center">
+                    <a class="list-group-item list-group-item-action bg-dark text-light">
+                        Monster Zone 5
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row text-light" id="spell-row">
+            <div class="col zone">
+                <div class="list-group align-items-center">
+                    <a class="list-group-item list-group-item-action bg-dark text-light">
+                        Spell/Trap Zone 1
+                    </a>
+                </div>
+            </div>
+            <div class="col zone">
+                <div class="list-group align-items-center">
+                    <a class="list-group-item list-group-item-action bg-dark text-light">
+                        Spell/Trap Zone 2
+                    </a>
+                </div>
+            </div>
+            <div class="col zone">
+                <div class="list-group align-items-center">
+                    <a class="list-group-item list-group-item-action bg-dark text-light">
+                        Spell/Trap Zone 3
+                    </a>
+                </div>
+            </div>
+            <div class="col zone">
+                <div class="list-group align-items-center">
+                    <a class="list-group-item list-group-item-action bg-dark text-light">
+                        Spell/Trap Zone 4
+                    </a>
+                </div>
+            </div>
+            <div class="col zone">
+                <div class="list-group align-items-center">
+                    <a class="list-group-item list-group-item-action bg-dark text-light">
+                        Spell/Trap Zone 5
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row text-light" id="hand-deck-row">
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="hand-zone" data-appendto="true">
+                <div class="list-group align-items-center">
+                    <a class="list-group-item list-group-item-action bg-dark text-light"
+                       draggable="true" ondragstart="drag(event)" id="hand-item">
+                        Hand
+                    </a>
+                </div>
+            </div>
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="deck-zone" >
+                <div class="list-group align-items-center" id="deck-zone-list" data-appendto="true">
+                </div>
+            </div>
+            <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="extra-deck-zone" data-appendto="true">
+                <div class="list-group align-items-center" id="extra-deck-zone-list">
+                    <a class="list-group-item list-group-item-action bg-dark text-light"
+                       draggable="true" ondragstart="drag(event)" id="extra-deck-item">
+                        Extra Deck
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="parallax-window" data-parallax="scroll" data-image-src="img/flat_dark.jpg"></div>
+
+
 <!-- Modal -->
-<div class="modal fade" id="test-hand-modal" tabindex="-1" role="dialog" aria-labelledby="test-hand-modal-label"
+<div class="modal fade text-light" id="test-hand-modal" tabindex="-1" role="dialog"
+     aria-labelledby="test-hand-modal-label"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title" id="test-hand-modal-label">Generate Test Hands</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body bg-dark">
                 <h5>Hand:</h5>
                 <div class="list-group align-items-left" id="hand-list"></div>
             </div>
@@ -75,44 +255,38 @@
         </div>
     </div>
 </div>
-
-
-<div class="container-fluid">
-    <div class="alert alert-danger fade show" role="alert" style="display: none" id="error-container">
-        <h4 class="alert-heading">OOPSIE WOOPSIE!!</h4>
-        <p>Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD
-            to fix this!</p>
-        <button type="button" class="close" onclick="$('.alert').hide()" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <br>
-    <h3>Card List:</h3>
-    <div class="row">
-        <div class="list-group align-items-center col card-list" id="card-list"></div>
-        <div class="col">
-            <h4>Monsters: <span class="badge badge-pill badge-info" id="monster-count">0</span></h4>
-            <div class="list-group deck-lists align-items-center" id="monster-list"></div>
-            <h4>Spells: <span class="badge badge-pill badge-info" id="spell-count">0</span></h4>
-            <div class="list-group deck-lists align-items-center" id="spell-list"></div>
-        </div>
-        <div class="col">
-            <h4>Traps: <span class="badge badge-pill badge-info" id="trap-count">0</span></h4>
-            <div class="list-group deck-lists align-items-center" id="trap-list"></div>
-            <h4>Extra: <span class="badge badge-pill badge-info" id="extra-count">0</span></h4>
-            <div class="list-group deck-lists align-items-center" id="extra-list"></div>
-        </div>
-    </div>
-</div>
-
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
 <script src="js/popper.min.js"></script>
+<script src="js/parallax.min.js"></script>
 <script src="js/underscore-min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.js"><\/script>')</script>
 <script src="js/ygopricesapi.js"></script>
 <script src="js/main.js"></script>
+
+<script>
+    function allowDrop(allowdropevent) {
+        allowdropevent.target.style.color = 'blue';
+        allowdropevent.preventDefault();
+    }
+
+    function drag(dragevent) {
+        dragevent.dataTransfer.setData("text", dragevent.target.id);
+        dragevent.target.style.color = 'green';
+    }
+
+    function drop(dropevent) {
+        dropevent.preventDefault();
+        let data = dropevent.dataTransfer.getData("text");
+        if(dropevent.target.getAttribute('data-appendto') === "true"){
+            dropevent.target.appendChild(document.getElementById(data));
+        }else {
+            dropevent.target.parentNode.appendChild(document.getElementById(data));
+        }
+        document.getElementById("drag").style.color = 'black';
+    }
+</script>
 
 
 </body>

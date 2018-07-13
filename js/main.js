@@ -310,7 +310,7 @@ $(function () {
             if($(this).attr('data-content').indexOf("Card Type: spell") > -1){
                 document.getElementById('spell-count').innerHTML =
                     `${parseInt(document.getElementById('spell-count').innerHTML) - 1}`;
-                deck_arr.remove($(this)[0].innerHTML.toString());
+                deck_arr.remove($(this)[0].textContent.toString());
             }else if($(this).attr('data-content').indexOf("Card Type: monster") > -1){
                 if($(this).attr('data-content').indexOf("/ Xyz") > -1 ||
                     $(this).attr('data-content').indexOf("/ Synchro") > -1 ||
@@ -318,19 +318,19 @@ $(function () {
                     $(this).attr('data-content').indexOf("/ Link") > -1){
                     document.getElementById('extra-count').innerHTML =
                         `${parseInt(document.getElementById('extra-count').innerHTML) - 1}`;
-                    extra_deck_arr.remove($(this)[0].innerHTML.toString());
+                    extra_deck_arr.remove($(this)[0].textContent.toString());
                     isExtra = true;
                 }else{
                     document.getElementById('monster-count').innerHTML =
                         `${parseInt(document.getElementById('monster-count').innerHTML) - 1}`;
-                    deck_arr.remove($(this)[0].innerHTML.toString());
+                    deck_arr.remove($(this)[0].textContent.toString());
                 }
             } else if($(this).attr('data-content').indexOf("Card Type: trap") > -1){
                 document.getElementById('trap-count').innerHTML =
                     `${parseInt(document.getElementById('trap-count').innerHTML) - 1}`;
-                deck_arr.remove($(this)[0].innerHTML.toString());
+                deck_arr.remove($(this)[0].textContent.toString());
             }
-            let entry_remove = document.getElementsByClassName($(this)[0].innerHTML.toString().toLowerCase().replace(/\s/g, ''));
+            let entry_remove = document.getElementsByClassName($(this)[0].textContent.toString().toLowerCase().replace(/\s/g, ''));
             if(isExtra){
                 --extra_count;
             }else{

@@ -56,6 +56,9 @@
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="modal" data-target="#test-hand-modal" href="#">Test Hands</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#chat-box-modal" href="#">Chat</a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
@@ -173,7 +176,7 @@
             </div>
             <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="st-zone3">
                 <h6>Spell/Trap Zone</h6>
-                <div class="list-group align-items-center zone-item" data-appendto="true">
+                <div class="list-group align-items-center zone-item" data-appendto="true" id="st-zone3-drop">
                 </div>
             </div>
             <div class="col zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="st-zone4">
@@ -233,6 +236,36 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade text-light" id="chat-box-modal" tabindex="-1" role="dialog" aria-labelledby="chat-box-modal-label"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="chat-box-modal-label">Chat</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body bg-dark">
+                <ul class="list-group" id="messages"></ul>
+                <form action="">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" aria-label="Message" id="m" autocomplete="off">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-secondary">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
 <script src="js/popper.min.js"></script>
@@ -242,25 +275,10 @@
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.js"><\/script>')</script>
 <script src="js/ygopricesapi.js"></script>
 <script src="js/main.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/dragdrop.js"></script>
 
 <script>
-    function allowDrop(allowdropevent) {
-        allowdropevent.preventDefault();
-    }
-
-    function drag(dragevent) {
-        dragevent.dataTransfer.setData("text", dragevent.target.id);
-    }
-
-    function drop(dropevent) {
-        dropevent.preventDefault();
-        let data = dropevent.dataTransfer.getData("text");
-        if(dropevent.target.getAttribute('data-appendto') === "true"){
-            dropevent.target.appendChild(document.getElementById(data));
-        }else {
-            dropevent.target.parentNode.appendChild(document.getElementById(data));
-        }
-    }
 
 </script>
 

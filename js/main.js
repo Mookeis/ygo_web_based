@@ -3,46 +3,7 @@ $(function () {
     let extra_deck_arr = [];
     let main_count = 0;
     let extra_count = 0;
-
-    function get_card_img(card_name, entry, entry_copy){
-        let url = `https://cors-anywhere.herokuapp.com/http://yugiohprices.com/api/card_image/` +
-            card_name;
-        let xmlHTTP = new XMLHttpRequest();
-        xmlHTTP.open('GET',url,true);
-
-        // Must include this line - specifies the response type we want
-        xmlHTTP.responseType = 'arraybuffer';
-
-        xmlHTTP.onload = function(e)
-        {
-
-            var arr = new Uint8Array(this.response);
-
-
-            // Convert the int array to a binary string
-            // We have to use apply() as we are converting an *array*
-            // and String.fromCharCode() takes one or more single values, not
-            // an array.
-            var raw = String.fromCharCode.apply(null,arr);
-
-            // This works!!!
-            var b64=btoa(raw);
-            var dataURL="data:image/jpeg;base64,"+b64;
-            //let img = $("<img src=''/>").attr('src', dataURL);
-            let img = document.createElement("img");
-            img.setAttribute("src", dataURL);
-            img.setAttribute("style", "position: absolute; right: 30px; max-width: 30px; max-height: 30px;");
-
-            let img2 = document.createElement("img");
-            img2.setAttribute("src", dataURL);
-            img2.setAttribute("style", "position: absolute; right: 30px; max-width: 30px; max-height: 30px;");
-            //$('body').append(img);
-            entry.appendChild(img);
-            entry_copy.appendChild(img2);
-        };
-
-        xmlHTTP.send();
-    }
+    let socket = io();
 
     // set array method for remove by value
     Array.prototype.remove = function() {
@@ -61,13 +22,24 @@ $(function () {
         return array.filter((v) => (v === value)).length;
     }
 
+    socket.on('add event', function(attrs, values, name) {
+        let new_entry = document.createElement('a');
+        let dummy = document.createElement('a');
+        get_card_img(name, dummy, new_entry);
+        for(let i = 0; i < attrs.length; ++i){
+            new_entry.setAttribute(attrs[i], values[i]);
+        }
+        new_entry.appendChild(document.createTextNode(name));
+        document.getElementById('deck-zone-list').appendChild(new_entry);
+    });
+
     //smooth scroll
     $('.scroll-down').on("click", function(){
         /*window.scrollTo({
             top: 1000,
             behavior: "smooth"
         });*/
-        $('html,body').animate({scrollTop:1000}, 1000);
+        $('html,body').animate({scrollTop: '+=1000'}, { "duration": 1000, "easing": "linear" });
     });
 
     // generate hand from arr
@@ -153,7 +125,7 @@ $(function () {
                 entry_copy.setAttribute("class", `${card_class_name} list-group-item list-group-item-action bg-dark text-light`);
                 entry_copy.setAttribute("title", "Card Description");
                 entry_copy.setAttribute("tabindex", "0");
-                entry_copy.setAttribute("data-toggle", "popover");
+                //entry_copy.setAttribute("data-toggle", "popover");
                 entry_copy.setAttribute("data-trigger", "focus");
                 entry_copy.setAttribute("data-html", "true");
                 entry_copy.setAttribute("draggable", "true");
@@ -413,8 +385,13 @@ $(function () {
             entry_copy.setAttribute("ondragstart", "drag(event)");
 
             entry_list.appendChild(entry);
-            entry_copy_list.appendChild(entry_copy);
-
+            let nodes=[], values=[];
+            for (let att, i = 0, atts = entry_copy.attributes, n = atts.length; i < n; i++){
+                att = atts[i];
+                nodes.push(att.nodeName);
+                values.push(att.nodeValue);
+            }
+            socket.emit('add event', nodes, values, $(this)[0].textContent);
             return false;
         });
 

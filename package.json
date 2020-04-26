@@ -2,16 +2,8 @@
   "name": "ygo_web_based",
   "version": "0.0.1",
   "description": "Web-based Yugioh App",
-  "main": "js/index.js",
   "dependencies": {
     "express": "^4.16.3",
     "socket.io": "^2.1.1"
-  },
-  "scripts": {
-    "start": "node js/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Mookeis/ygo_web_based/tree/master"
   }
 }

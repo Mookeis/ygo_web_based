@@ -22,6 +22,7 @@ $(function () {
         return array.filter((v) => (v === value)).length;
     }
 
+    //socket listeners
     socket.on('add event', function(attrs, values, name) {
         let new_entry = document.createElement('a');
         let dummy = document.createElement('a');
@@ -31,6 +32,14 @@ $(function () {
         }
         new_entry.appendChild(document.createTextNode(name));
         document.getElementById('deck-zone-list').appendChild(new_entry);
+    });
+
+    socket.on('drop event', function(target, d) {
+        if (document.getElementById(target).getAttribute('data-appendto') === "true") {
+            document.getElementById(target).appendChild(document.getElementById(d));
+        } else {
+            document.getElementById(target).parentNode.appendChild(document.getElementById(d));
+        }
     });
 
     //smooth scroll

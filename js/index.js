@@ -24,11 +24,7 @@ io.on('connection', function(socket){
 
 
 <<<<<<< HEAD
-<<<<<<< HEAD
 http.listen(process.env.PORT || 3000, function(){
-=======
-app.listen(process.env.PORT, function(){
->>>>>>> parent of c28d8fb... Added proc file
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 =======
 http.listen(3000, function(){

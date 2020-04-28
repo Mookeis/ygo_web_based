@@ -154,7 +154,7 @@ $(function () {
     }
 
     function get_card_img(card_name, entry, entry_copy) {
-        let url = `https://yugiohprices.com/api/card_image/` + card_name;
+        let url = `https://cors-anywhere.herokuapp.com/http://yugiohprices.com/api/card_image/` + card_name;
         let xmlHTTP = new XMLHttpRequest();
         xmlHTTP.open("GET", url, true);
 

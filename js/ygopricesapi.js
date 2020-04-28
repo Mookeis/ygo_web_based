@@ -1,5 +1,5 @@
 function get_card_names(callback){
-    let url = `https://yugiohprices.com/api/card_names`;
+    let url = `https://cors-anywhere.herokuapp.com/http://yugiohprices.com/api/card_names`;
     $.ajax({
         type: 'GET',
         url: url,
@@ -16,7 +16,7 @@ function get_card_names(callback){
 }
 
 function get_card_desc(card_name, callback){
-    let url = `https://yugiohprices.com/api/card_data/` + card_name;
+    let url = `https://cors-anywhere.herokuapp.com/http://yugiohprices.com/api/card_data/` + card_name;
     $.ajax({
         type: 'GET',
         url: url,

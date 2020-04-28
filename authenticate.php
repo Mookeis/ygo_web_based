@@ -23,23 +23,23 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?'
         $stmt->bind_result($id, $password);
         $stmt->fetch();
         if (password_verify($_POST['login-password'], $password)) {
-            //session_destroy();
-            //session_start();
-            //session_regenerate_id();
+            session_destroy();
+            session_start();
+            session_regenerate_id();
             unset($_SESSION['blankerror']);
             unset($_SESSION['passerror']);
             unset($_SESSION['usererror']);
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = $_POST['login-username'];
             $_SESSION['id'] = $id;
-            header('Location: index.php');
+            header('Location: https://aqueous-coast-60682.herokuapp.com/');
         } else {
             $_SESSION['passerror'] = TRUE;
-            header('Location: index.php');
+            header('Location: https://aqueous-coast-60682.herokuapp.com/');
         }
     } else {
         $_SESSION['usererror'] = TRUE;
-        header('Location: index.php');
+        header('Location: https://aqueous-coast-60682.herokuapp.com/');
     }
 
 	$stmt->close();

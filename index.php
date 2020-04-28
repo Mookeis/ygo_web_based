@@ -16,7 +16,7 @@
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="css/main.css" rel="stylesheet" media="screen">
 
-    <link rel="shortcut icon" href="http://www.yugioh-card.com/yugioh.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/yugioh.ico" type="image/x-icon">
 </head>
 
 <body onload="setInterval('chat.update()', 1000)">

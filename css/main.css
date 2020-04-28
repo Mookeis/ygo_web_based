@@ -8,14 +8,6 @@ html, body {
     height: 100%;
 }
 
-#messages {
-    height: 300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
 #card-list {
     height: 80vh;
     overflow: scroll;
@@ -259,3 +251,5 @@ html, body {
         background-position: 0% 50%
     }
 }
+
+.error { border:  1px solid red; }

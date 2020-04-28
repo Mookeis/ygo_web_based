@@ -17,6 +17,17 @@
     <link href="css/main.css" rel="stylesheet" media="screen">
 
     <link rel="shortcut icon" href="img/yugioh.ico" type="image/x-icon">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/parallax-scroll.js"></script>
+    <script src="js/underscore-min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.js"><\/script>')</script>
+    <script src="js/ygopricesapi.js"></script>
+    <script type="text/javascript" src="js/chat.js"></script>
+    <script src="js/main.js"></script>
 </head>
 
 <body onload="setInterval('chat.update()', 1000)">
@@ -520,16 +531,6 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/parallax-scroll.js"></script>
-    <script src="js/underscore-min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.js"><\/script>')</script>
-    <script src="js/ygopricesapi.js"></script>
-    <script type="text/javascript" src="js/chat.js"></script>
-    <script src="js/main.js"></script>
 
     <script>
         function allowDrop(allowdropevent) {

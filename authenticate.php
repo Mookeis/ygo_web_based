@@ -32,14 +32,14 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?'
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = $_POST['login-username'];
             $_SESSION['id'] = $id;
-            header('Location: https://aqueous-coast-60682.herokuapp.com/');
+            header('Location: index.php');
         } else {
             $_SESSION['passerror'] = TRUE;
-            header('Location: https://aqueous-coast-60682.herokuapp.com/');
+            header('Location: index.php');
         }
     } else {
         $_SESSION['usererror'] = TRUE;
-        header('Location: https://aqueous-coast-60682.herokuapp.com/');
+        header('Location: index.php');
     }
 
 	$stmt->close();

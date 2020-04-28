@@ -17,17 +17,6 @@
     <link href="css/main.css" rel="stylesheet" media="screen">
 
     <link rel="shortcut icon" href="img/yugioh.ico" type="image/x-icon">
-
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/parallax-scroll.js"></script>
-    <script src="js/underscore-min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.js"><\/script>')</script>
-    <script src="js/ygopricesapi.js"></script>
-    <script type="text/javascript" src="js/chat.js"></script>
-    <script src="js/main.js"></script>
 </head>
 
 <body onload="setInterval('chat.update()', 1000)">
@@ -80,10 +69,10 @@
                         </a>
                         <div class="dropdown-menu bg-dark text-white" aria-labelledby="navbarDropdown">
                             <?php
-                                $DATABASE_HOST = 'localhost';
-                                $DATABASE_USER = 'root';
-                                $DATABASE_PASS = '';
-                                $DATABASE_NAME = 'phplogin';
+                                $DATABASE_HOST = 'us-cdbr-iron-east-01.cleardb.net';
+                                $DATABASE_USER = 'b1c6aa7e68c2a0';
+                                $DATABASE_PASS = 'a248a5e5';
+                                $DATABASE_NAME = 'heroku_225f13460926939';
                                 
                                 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
                                 if ( mysqli_connect_errno() ) {
@@ -158,6 +147,7 @@
             </div>
         </nav>
     </div>
+
     <!-- Chat Modal -->
     <div class="modal fade" id="chatRoomModal" tabindex="-1" role="dialog" aria-labelledby="chatRoomModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -531,7 +521,17 @@
             </div>
         </div>
     </div>
-
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/parallax-scroll.js"></script>
+    <script src="js/underscore-min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.js"><\/script>')</script>
+    <script src="js/ygopricesapi.js"></script>
+    <script type="text/javascript" src="js/chat.js"></script>
+    <script src="js/main.js"></script>
     <script>
         function allowDrop(allowdropevent) {
             allowdropevent.preventDefault();

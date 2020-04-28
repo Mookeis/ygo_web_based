@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2020 at 12:07 PM
+-- Generation Time: Apr 28, 2020 at 07:28 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -41,14 +41,10 @@ CREATE TABLE `accounts` (
 
 INSERT INTO `accounts` (`id`, `username`, `password`, `email`) VALUES
 (1, 'test', '$2y$10$SfhYIDtn.iOuCW7zfoFLuuZHX6lja4lF4XA4JqNmpiH/.P3zB8JCa', 'test@test.com'),
-(3, 'Mookie', '$2y$10$xgmmBCoQh6aBgH/6ReWmGeYUkBgNZdoJxblEpkbAVnzz0iCTej1rG', 'mackenzie.dang@gmail.com'),
 (4, 'asfgasf', '$2y$10$cS0GXFSfMAbRgpXIFXfbaucgIuB2.8arcWR5O5e/kd3S49fKcDC0K', 'abc@gmail.com'),
 (5, 'asfdasgasg', '$2y$10$JMBq1JfSDXXBYstzUE1vM.3QKq6SpFuEgV2JTgTVDJZvoxGb8tp/i', 'asgasgas@gmail.com'),
 (6, 'asfdasgasg', '$2y$10$fMgvM0ZC4KI.yS57.Qld0u61GG3lNmuUUewm9Oq19LYzA6Ec4aMly', 'asgasgas@gmail.com'),
-(7, 'asfdasgasg', '$2y$10$es0zE5jt43sSvSaOfa7PTuY2hL97mPKBotqA6cKIltbxhWKItRMY6', 'asgasgas@gmail.com'),
-(8, 'Mookie', '$2y$10$ljzcIaiuTPSiCws.rupnkOkwTtyzcixVSc6ln/trLpny170og7XG6', 'mackenzie.dang@gmail.com'),
-(9, 'Mookie', '$2y$10$hhD2GLh2VXYdiSNhFIfI2uyHGOPrEiPrfON.QhX90YF65e1z9olba', 'm@gmail.com'),
-(10, 'Mookie', '$2y$10$LDfOKpL3N.KSva7Y9phVfek4YTtb1IqqXX/cIVZt/GLjnyNMNTSx2', 'm@gmail.com');
+(7, 'asfdasgasg', '$2y$10$es0zE5jt43sSvSaOfa7PTuY2hL97mPKBotqA6cKIltbxhWKItRMY6', 'asgasgas@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -63,6 +59,16 @@ CREATE TABLE `decks` (
   `extra_deck` text CHARACTER SET utf8 DEFAULT NULL,
   `name` text CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `decks`
+--
+
+INSERT INTO `decks` (`id`, `user_id`, `deck`, `extra_deck`, `name`) VALUES
+(5, 1, 'Zoodiac Barrage,Zoodiac Barrage,Zoodiac Barrage', 'Zoodiac Hammerkong,Zoodiac Hammerkong,Zoodiac Hammerkong,Zoodiac Drident', 'Zoodiac'),
+(6, 1, 'Zoodiac Barrage,Zoodiac Kataroost,Zoodiac Barrage,Zoodiac Kataroost,Zoodiac Barrage,Zoodiac Kataroost', 'Zoodiac Boarbow,Zoodiac Chakanine,Zoodiac Boarbow,Zoodiac Broadbull,Zoodiac Broadbull,Zoodiac Boarbow,Zoodiac Broadbull,Zoodiac Chakanine,Zoodiac Chakanine', 'zoo 2'),
+(7, 1, 'Zoodiac Barrage,Zoodiac Kataroost,Zoodiac Barrage,Zoodiac Kataroost,Zoodiac Barrage,Zoodiac Kataroost', 'Zoodiac Boarbow,Zoodiac Chakanine,Zoodiac Boarbow,Zoodiac Broadbull,Zoodiac Broadbull,Zoodiac Boarbow,Zoodiac Broadbull,Zoodiac Chakanine,Zoodiac Chakanine', 'zoo 3'),
+(8, 1, 'Zoodiac Barrage,Zoodiac Barrage,Zoodiac Barrage', '', 'asd');
 
 --
 -- Indexes for dumped tables
@@ -95,7 +101,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `decks`
 --
 ALTER TABLE `decks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
